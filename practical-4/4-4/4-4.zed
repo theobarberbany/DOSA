@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+  [ STUDENT, MODULE]\\
+  LEVEL ::= I | C | H | M\\
+  next\_lower == \{M\mapsto H, H\mapsto C, C\mapsto I\}
+\end{zed}
+  
+\begin{axdef}
+  prereq: MODULE \rel MODULE\\
+\where
+  prereq\plus \cap \id MODULE = \emptyset
+\end{axdef}
+
+\begin{axdef}
+  level: MODULE \fun LEVEL\\
+  no\_mods: STUDENT \fun (STUDENT \rel MODULE) \fun LEVEL \pfun \nat
+\where
+  \forall s: STUDENT; r: STUDENT \rel MODULE; l: LEVEL |\\
+  \t1 r \limg \{s\} \rimg \cap level\inv \limg \{l\} \rimg \in \finset MODULE @ \\
+  \t2 no\_mods~ s~ r~ l = \# (r \limg \{s\} \rimg \cap level\inv \limg \{l\} \rimg)
+\end{axdef}
+
+
+\begin{schema}{Enrolled}
+  enrolled: \finset STUDENT\\
+  module: \finset MODULE\\
+  registered: STUDENT \rel MODULE
+\where
+  registered \in enrolled \rel module
+\end{schema}
+
+\begin{schema}{EnrolledP}
+  Enrolled\\
+  passed: STUDENT \rel MODULE
+\where
+  passed \subseteq registered\\
+  \forall r:  registered @ \{ first\ r \} \cross prereq \limg \{ second\ r \} \rimg \subseteq passed
+\end{schema}
+
+
+\begin{schema}{Enrol}
+  \Delta Enrolled\\
+  e?: STUDENT
+\where
+  e? \notin enrolled\\
+  enrolled' = enrolled \cup \{e?\}\\
+  module' = module\\
+  registered' = registered
+\end{schema}
+
+\begin{schema}{Register}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  m?: MODULE
+\where
+  e? \in enrolled\\
+  m? \in module \setminus registered\limg \{e?\} \rimg\\
+  enrolled' = enrolled\\
+  module' = module\\
+  registered' = registered \cup \{e? \mapsto m? \}
+\end{schema}
+
+\begin{schema}{RegisterP}
+  \Delta EnrolledP\\
+  Register
+\where
+  passed' = passed
+\end{schema}
+
+
+\begin{schema}{Deregister}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  m?: MODULE\\
+\where
+  e? \in enrolled\\
+  m? \in registered\limg \{e?\} \rimg\\
+  registered' = registered \setminus \{e? \mapsto m? \}
+\end{schema}
+
+\begin{schema}{Transfer}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  from?: MODULE\\
+  to?: MODULE
+\where
+  e? \mapsto from? \in registered\\
+  to? \in module \setminus \{from?\}\\
+  e? \mapsto to? \notin registered\\
+  registered' = registered \setminus \{e? \mapsto from? \} \cup \{e? \mapsto to? \}\\
+  enrolled' = enrolled\\
+  module' = module
+\end{schema}
+
+\end{document}

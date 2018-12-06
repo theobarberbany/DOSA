@@ -1,0 +1,290 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.16)  6 NOV 2018 16:38
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**4-4.zed
+(./4-4.zed
+LaTeX2e <2018-04-01> patch level 2
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2018/03/24 v5.7 Page Geometry
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+)
+(/Users/tb15/Library/texmf/tex/latex/czt.sty
+Package: czt 2015/07/23 v.1.4 Standard Z style file by the Community Z Tools
+
+`Standard Z style file by the Community Z Tools' v.1.4 <2015/07/23>
+Package czt Info: AMS fonts selected with default options on input line 85.
+Package czt Info: Rendering Z math mode in monochrome. on input line 120.
+\c@mv@czt=\count91
+Package czt Info: Creating `czt' math version on input line 151.
+\symstmry=\mathgroup4
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 158.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `czt'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/m/n on input line 162.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `czt'
+(Font)                  OT1/cmr/bx/n --> OT1/cmr/bx/n on input line 163.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `czt'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 164.
+\symitalics=\mathgroup5
+Package czt Info: Loading AMS font symbols for Z on input line 602.
+\symAMSa=\mathgroup6
+\symAMSb=\mathgroup7
+Package czt Info: Current math version set to `czt' on input line 605.
+
+
+Package czt Warning: Could not resolve math code for letters.
+(czt)                Default could not be found. Using Italics on input line 66
+4.
+
+Package czt Info: Counting Z declarations? YES  on input line 682.
+\@zcountingwhat=\count92
+\c@cntZunboxed=\count93
+\c@cntZaxdef=\count94
+\c@cntZgendef=\count95
+\c@cntZschema=\count96
+\c@cntZgenschema=\count97
+\c@cntZtheorem=\count98
+\c@cntZproof=\count99
+\c@cntZdecl=\count100
+\c@cntZunknown=\count101
+\c@cntZtotunboxed=\count102
+\c@cntZtotaxdef=\count103
+\c@cntZtotgendef=\count104
+\c@cntZtotschema=\count105
+\c@cntZtotgenschema=\count106
+\c@cntZtottheorem=\count107
+\c@cntZtotproof=\count108
+\c@cntZtotdecl=\count109
+\c@cntZtotunknown=\count110
+\big@size=\dimen111
+\zedtab=\dimen112
+\zedindent=\dimen113
+\zedleftsep=\dimen114
+\zedbar=\dimen115
+\interzedlinepenalty=\count111
+\preboxpenalty=\count112
+\forcepagepenalty=\count113
+\zedskip=\skip43
+Package czt Info: Initialising Z registers with default values.
+(czt)                \zedtab=20.00003pt
+(czt)                \zedindent=25.00003pt=\leftmargini
+(czt)                \zedleftsep=10.00002pt
+(czt)                \zedbar=60.00009pt
+(czt)             
+(czt)                \interzedlinepenalty=10000
+(czt)                \preboxpenalty=0
+(czt)                \forcepagepenalty=-10000
+(czt)                \interdisplaylinepenalty=100
+(czt)             
+(czt)                \zedskip=6.0pt plus 3.99994pt minus 3.99994pt
+(czt)                \zt@p=false 
+(czt)                \CountDefstrue=true  on input line 1092.
+Package czt Info: Setting up Standard Z skipping and breaking on input line 112
+8.
+Package czt Info: Setting up Standard Z LaTeX environments on input line 1425.
+Package czt Info: Setting up Standard Z basic symbols on input line 1540.
+Package czt Info: Setting up Standard Z Greek and other letters on input line 1
+604.
+Package czt Info: Setting up Standard Z bracket symbols on input line 1651.
+Package czt Info: Marking \mid, \semicolon, and \spot
+(czt)             as 
+(czt)             active in math mode on input line 1655.
+Package czt Info: Setting up Standard Z predicate logic symbols on input line 1
+698.
+Package czt Info: Setting up Standard Z keywords on input line 1762.
+Package czt Info:   Loading prelude          symbols on input line 1772.
+Package czt Info:   Loading set      toolkit symbols on input line 1804.
+Package czt Info:   Loading relation toolkit symbols on input line 1830.
+Package czt Info:   Loading function toolkit symbols on input line 1845.
+Package czt Info:   Loading number   toolkit symbols on input line 1861.
+Package czt Info:   Loading sequence toolkit symbols on input line 1889.
+Package czt Info:   Loading standard toolkit symbols completed on input line 18
+93.
+Package czt Info:   Loading Z state refinement toolkit symbols completed on inp
+ut line 1904.
+) (./4-4.aux)
+\openout1 = `4-4.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(18.06749pt, 578.16002pt, 18.06749pt)
+* v-part:(T,H,B)=(18.06749pt, 758.835pt, 18.06749pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=578.16002pt
+* \textheight=758.835pt
+* \oddsidemargin=-54.2025pt
+* \evensidemargin=-54.2025pt
+* \topmargin=-91.2025pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 6.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 6.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+Package czt Warning: Counting unboxed  on input line 6.
+
+
+Package czt Warning: Counting unboxed  on input line 7.
+
+
+Package czt Warning: Counting unboxed  on input line 8.
+
+
+Package czt Warning: Counting axdef  on input line 12.
+
+
+Package czt Warning: Counting axdef  on input line 13.
+
+
+Package czt Warning: Counting axdef  on input line 18.
+
+
+Package czt Warning: Counting axdef  on input line 19.
+
+
+Package czt Warning: Counting axdef  on input line 22.
+
+
+Package czt Warning: Counting axdef  on input line 23.
+
+
+Package czt Warning: Counting schema  on input line 29.
+
+
+Package czt Warning: Counting schema  on input line 37.
+
+
+Package czt Warning: Counting schema  on input line 46.
+
+
+Package czt Warning: Counting schema  on input line 56.
+
+
+Package czt Warning: Counting schema  on input line 68.
+
+
+Package czt Warning: Counting schema  on input line 76.
+
+[1
+
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package czt Warning: Counting schema  on input line 86.
+
+[2] (./4-4.aux) ) 
+Here is how much of TeX's memory you used:
+ 1271 strings out of 492649
+ 15646 string characters out of 6129621
+ 91084 words of memory out of 5000000
+ 5192 multiletter control sequences out of 15000+600000
+ 6541 words of font info for 26 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 24i,11n,32p,184b,131s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/stmaryrd/stma
+ry10.pfb>
+Output written on 4-4.pdf (2 pages, 68048 bytes).
+PDF statistics:
+ 43 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

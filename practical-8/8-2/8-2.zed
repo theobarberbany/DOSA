@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  A == [ns: \finset \nat_1]\\
+  AInit == [A~' | ns' = \emptyset]\\
+  New == [\Delta A; n?: \nat_1 | ns' = ns \cup \{n?\}]\\
+  MSF == [\Xi A; m!: \nat_1 | ns \neq \emptyset; m! = max~ ns]
+  
+\end{zed}
+
+Non Injective seq allows 2MSF to not be unique.
+\begin{schema}{C3}
+  cs: \seq \nat_1 
+\where
+  (\varg<\varg)\comp cs \subseteq cs \comp (\varg<\varg)
+\end{schema}
+
+\begin{zed}
+  LI3 == [A; C3 | ns = ran~ cs]
+\end{zed}
+
+\begin{schema}{C3MSF2}
+  \Xi C3; ma!, mb!: \nat_1
+\where
+  \#(ran~ cs) \geq 2\\
+  ma! = last~ cs\\
+  mb! = last~ (front~ cs)
+\end{schema}
+
+
+
+\end{document}

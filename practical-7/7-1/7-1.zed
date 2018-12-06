@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+Trace == seq~\nat_1
+\end{zed}
+
+\begin{schema}{WidgetNodule}
+  seen: Trace
+\end{schema}
+
+\begin{schema}{WidgetNoduleInit}
+  WidgetNodule~'
+\where
+  seen' = \langle  \rangle
+\end{schema}
+
+\begin{schema}{NewEntry}
+  \Delta WidgetNodule\\
+  in?: \nat_1
+\where
+  seen' = seen\cat \langle in? \rangle
+\end{schema}
+
+\begin{schema}{MaxSoFar}
+  \Xi WidgetNodule\\
+  mx!: \nat_1
+\where
+  mx! = max~ran~seen
+\end{schema}
+\end{document}

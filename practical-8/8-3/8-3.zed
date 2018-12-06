@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  A == [ns: \finset \nat_1]\\
+  AInit == [A~' | ns' = \emptyset]\\
+  New == [\Delta A; n?: \nat_1 | ns' = ns \cup \{n?\}]\\
+  MSF == [\Xi A; m!: \nat_1 | ns \neq \emptyset; m! = max~ ns]
+\end{zed}
+
+\begin{schema}{AM2SF}
+  \Xi A\\
+  m1!,m2!: \nat_1
+\where
+  \#ns > 1\\
+  m1! = max~ ns\\
+  m2! = max~ (ns \setminus \{m1!\})
+\end{schema}
+
+Store the two max seen so far as they are observed.
+Must be $c=0 \land d=0$ to ensure two MSF are unique.
+\begin{zed}{}
+  C5 == [c,d: \nat| (c=0\land d=0) \lor  c < d]\\
+  C5Init == [C5~' | c' = 0 \land d' = 0]\\
+  C5MSF == [\Xi C5; m!: \nat | m! = c]
+\end{zed}
+
+\begin{schema}{LI5}
+  A; C5
+\where
+  c = 0 \implies ns = \emptyset\\
+  (c > 0 \land d = 0) \implies ns = \{c\}\\
+  d > 0 \implies (\{c,d\} \subseteq ns \land c = max~ ns \land d = max(ns \setminus \{c\}))
+\end{schema}
+
+\begin{schema}{C5New}
+  \Delta C\\
+  n?: \nat_1
+\where
+  \IF n? > c1 \THEN c' = n? \land d' = c\\
+  \ELSE~ (\IF~ (n? > d \land n? < c) \THEN c' = c \land d' = n?\\
+  \ELSE~ c' = c \land d' = d)
+\end{schema}
+
+
+\begin{schema}{C5MSF2}
+  \Xi C5\\
+  ma!, mb! : \nat
+\where
+  ma! = c\\
+  mb! = d
+\end{schema}
+
+
+
+\end{document}

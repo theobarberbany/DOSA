@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+
+
+\begin{document}
+// Do I need to constrain bits to [0,1] ?
+\begin{zed}
+BIT == \{0,1\}\\
+EVENT ::= IN \ldata BIT \rdata | OUT \ldata BIT \rdata\\
+Trace == seq~EVENT
+\end{zed}
+
+\begin{schema}{SystemSkeleton}
+  log: Trace
+\end{schema}
+
+\begin{schema}{OutBeforeIn}
+  tr: Trace
+\where
+  \forall t: Trace | tr = t \cat \langle OUT, OUT, OUT \rangle @ t \neq \langle  \rangle \land last~ t = IN
+\end{schema}
+
+\begin{zed}
+System == SystemSkeleton \land OutBeforeIn
+\end{zed}
+
+\begin{schema}{SystemInit}
+  System~'
+\where
+  log' = \emptyset
+\end{schema}
+
+
+
+
+\end{document}

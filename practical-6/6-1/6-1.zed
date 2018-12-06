@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+  [ORDINARY]\\
+  CHARS ::= EOF | Other\ldata ORDINARY\rdata\\
+  STATES ::= OPEN | CLOSED
+\end{zed}
+
+\begin{schema}{File}
+  content: \seq CHARS\\
+  state: STATES
+\where
+  last \ content = EOF\\
+  \# ( content \filter \{EOF\}) = 1
+\end{schema}
+
+\begin{schema}{FileInit}
+  File~'
+\where
+  content' = \langle \rangle\\
+  state' = CLOSED
+\end{schema}
+
+\begin{schema}{Overwrite}
+  \Delta File\\
+  in?: \seq CHARS
+\where
+  content' = in?
+\end{schema}
+
+\begin{schema}{Append}
+  \Delta File\\
+  in?: ORDINARY
+\where
+  content' = content \cat \langle Other(in?) \rangle
+\end{schema}
+
+\begin{schema}{Open}
+  \Xi File
+\end{schema}
+
+\begin{schema}{Close}
+  \Xi File
+\end{schema}
+
+\begin{schema}{Read}
+  \Xi File\\
+  out!: CHARS
+\end{schema}
+
+
+
+\end{document}

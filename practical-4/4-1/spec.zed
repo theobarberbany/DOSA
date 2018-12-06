@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+  [ STUDENT, MODULE]
+\end{zed}
+
+\begin{schema}{Enrolled}
+  enrolled: \finset STUDENT\\
+  module: \finset MODULE\\
+  registered: STUDENT \rel MODULE\\
+\where
+  registered \in enrolled \rel module
+\end{schema}
+
+\begin{schema}{Enrol}
+  \Delta Enrolled\\
+  e?: STUDENT
+\where
+  e? \notin enrolled\\
+  enrolled' = enrolled \cup \{e?\}\\
+  module' = module\\
+  registered' = registered
+\end{schema}
+
+\begin{schema}{Register}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  m?: MODULE
+\where
+  e? \in enrolled\\
+  m? \in module \setminus registered\limg \{e?\} \rimg\\
+  enrolled' = enrolled\\
+  module' = module\\
+  registered' = registered \cup \{e? \mapsto m? \}
+\end{schema}
+
+\begin{schema}{Deregister}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  m?: MODULE\\
+\where
+  e? \in enrolled\\
+  m? \in registered\limg \{e?\} \rimg\\
+  registered' = registered \setminus \{e? \mapsto m? \}
+\end{schema}
+
+\begin{schema}{Transfer}
+  \Delta Enrolled\\
+  e?: STUDENT\\
+  from?: MODULE\\
+  to?: MODULE
+\where
+  e? \mapsto from? \in registered\\
+  to? \in module \setminus \{from?\}\\
+  e? \mapsto to? \notin registered\\
+  registered' = registered \setminus \{e? \mapsto from? \} \cup \{e? \mapsto to? \}\\
+  enrolled' = enrolled\\
+  module' = module
+\end{schema}
+
+
+
+
+\end{document}

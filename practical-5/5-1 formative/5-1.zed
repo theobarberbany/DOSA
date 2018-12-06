@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+\begin{document}
+\begin{zed}
+  [ CUSTOMER ]\\
+  MEMBERSHIP ::= Gold | Silver
+\end{zed}
+
+\begin{schema}{LoyaltyScheme}
+  members:\finset CUSTOMER\\
+  membershipType: CUSTOMER \pfun MEMBERSHIP\\
+  points: CUSTOMER \pfun \nat
+\where
+  points \in members \pfun \nat\\
+  membershipType \in members \pfun MEMBERSHIP
+\end{schema}
+
+\begin{schema}{LoyaltySchemeInit}
+  \Delta LoyaltyScheme
+\where
+  members' = \emptyset\\
+  points' = \emptyset\\
+  membershipType' = \emptyset
+\end{schema}
+
+\begin{schema}{Join}
+  \Delta LoyaltyScheme\\
+  newMember?: CUSTOMER
+\where
+  members' = members \cup \{newMember?\}\\
+  points'(newMember?) = 100\\
+  membershipType'(newMember?) = Silver
+\end{schema}
+
+\begin{schema}{Upgrade}
+\Delta LoyaltyScheme\\
+member?: CUSTOMER
+\where
+  member? \in members\\
+  membershipType'(member?) = Gold \\
+  members' = members\\
+  points' = points
+\end{schema}
+
+\begin{schema}{Till\_receipt}
+  \Delta LoyaltyScheme\\
+  receiptValue?:\arithmos\\
+  member?: CUSTOMER
+\where
+  member? \in members\\
+  membershipType(member?)= Silver \implies points'(member?) = points(member?) + receiptValue?\\
+  membershipType(member?) = Gold \implies points'(member?) = points(member?) + 2*receiptValue?\\
+  members' = members\\
+  membershipType' = membershipType
+\end{schema}
+
+\begin{schema}{Issue}
+  \Delta LoyaltyScheme\\
+  member?: CUSTOMER\\
+  out!:\nat
+\where
+  member?\in members\\
+  out! = points(member?) \div 100 \\
+  points'(member?) = points(member?) \mod 100 \\
+  members' = members\\
+  membershipType' = membershipType
+\end{schema}
+
+
+
+\end{document}

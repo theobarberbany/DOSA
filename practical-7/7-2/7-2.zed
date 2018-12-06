@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{czt}
+
+\begin{document}
+
+// The chair = founder as the chair rotate and resign operations are not required.
+\begin{zed}
+[PERSON]\\
+EVENT ::= NEW \ldata PERSON\rdata | RESIGN \ldata PERSON \rdata | COUNTORDINARY \ldata \nat \rdata\\
+Trace == seq~EVENT
+\end{zed}
+
+\begin{schema}{CommitteeStruct}
+  tr: Trace
+\end{schema}
+
+\begin{schema}{NewMemberNotCurrent}
+  tr: Trace
+\where
+  \forall t: Trace; p: PERSON | tr = t \cat \langle NEW~ p \rangle @\\
+  \t1 \exists s == t \filter \{NEW~ p, RESIGN~ p\} @\\
+  \t2 s = \langle  \rangle \lor last~ s = RESIGN~ p
+\end{schema}
+
+/Subtract the number of times someone resigns from the number of times they join.
+\begin{schema}{CorrectCount}
+  tr: Trace
+\where
+  \forall t: Trace; n: \nat | tr = t \cat \langle\ COUNTORDINARY~ n \rangle @\\
+  \t1 n = \#(t \filter \ran NEW) - \#(t \filter \ran RESIGN)
+\end{schema}
+
+\begin{schema}{Resignation}
+  tr: Trace
+\where
+  \forall t: Trace; p: PERSON | tr = t \cat \langle RESIGN~p \rangle @\\
+  \t1 \exists s == t \filter \{NEW~p, RESIGN~p\} @\\
+  \t2 s \neq \langle  \rangle \land last~ s = NEW~p
+\end{schema}
+
+
+
+
+
+\end{document}

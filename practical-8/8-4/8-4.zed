@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  A == [ns: \finset \nat_1]\\
+  AInit == [A~' | ns' = \emptyset]\\
+  New == [\Delta A; n?: \nat_1 | ns' = ns \cup \{n?\}]\\
+  MSF == [\Xi A; m!: \nat_1 | ns \neq \emptyset; m! = max~ ns]
+  
+\end{zed}
+
+Store the two max seen so far as they are observed.
+For C5 to initialise the two values must both be constrained or else 
+\begin{zed}{}
+  C5 == [c,d: \nat| c \geq d]\\
+  C5Init == [C5~' | c' = 0; d' = 0]\\
+  C5New == [\Delta C5; n?: \nat_1 | c' = \IF c < n? \THEN n? \ELSE c; d' = \IF d < n? \THEN n? \ELSE d]\\
+  C5MSF == [\Xi C5; m!: \nat | m! = c]
+\end{zed}
+
+\begin{schema}{LI5}
+  A; C5
+\where
+  c = 0 \implies ns = \emptyset\\
+  c \neq 0 \implies (ns \neq \emptyset \land c = max~ ns)
+\end{schema}
+
+
+\begin{schema}{C5MSF2}
+  \Xi C5\\
+  ma!, mb! : \nat
+\where
+  ma! = c\\
+  mb! = d
+\end{schema}
+
+\end{document}
