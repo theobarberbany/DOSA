@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  [ PERSON ]
+\end{zed}
+
+This specification describes a committee structure
+
+\begin{schema}{Committee}
+  member:\finset PERSON;\\
+  chair:PERSON
+\where
+  chair \in member
+\end{schema}
+
+\begin{schema}{CommitteeInit}
+  member':\finset PERSON;\\
+  chair': PERSON;\\
+  founder?: PERSON
+\where
+  member' = \{founder?\} \land chair' = founder?
+\end{schema}
+
+\begin{schema}{NewMember}
+ Committee;\\
+ Committee~';\\
+ new?: PERSON
+\where
+  new? \notin member \land member' = member \cup \{new?\}
+\end{schema}
+
+\begin{schema}{RotateChair}
+  Committee;\\
+  Committee~'
+\where
+  chair' \neq chair \land member' = member
+\end{schema}
+
+\begin{schema}{CountOrdinary}
+  Committee;\\
+  Committee~';\\
+  ans!: \nat
+\where
+  ans! = \#(member \setminus \{chair\})\\
+  chair' = chair\\
+  member' = member
+\end{schema}
+
+
+\end{document}

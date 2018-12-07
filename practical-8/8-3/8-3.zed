@@ -39,7 +39,7 @@ Must be $c=0 \land d=0$ to ensure two MSF are unique.
   \Delta C\\
   n?: \nat_1
 \where
-  \IF n? > c1 \THEN c' = n? \land d' = c\\
+  \IF n? > c \THEN (c' = n? \land d' = c)\\
   \ELSE~ (\IF~ (n? > d \land n? < c) \THEN c' = c \land d' = n?\\
   \ELSE~ c' = c \land d' = d)
 \end{schema}

@@ -12,7 +12,8 @@
 \end{zed}
 
 Store the two max seen so far as they are observed.
-For C5 to initialise the two values must both be constrained or else 
+For C5 to initialise the two values must both be constrained, else it will be false.
+Only difference between 8.4 and 8.3 is the weakening of the constraint in 8.3??
 \begin{zed}{}
   C5 == [c,d: \nat| c \geq d]\\
   C5Init == [C5~' | c' = 0; d' = 0]\\
@@ -20,13 +21,20 @@ For C5 to initialise the two values must both be constrained or else
   C5MSF == [\Xi C5; m!: \nat | m! = c]
 \end{zed}
 
-\begin{schema}{LI5}
+\begin{schema}{LI5\_BAD}
   A; C5
 \where
   c = 0 \implies ns = \emptyset\\
   c \neq 0 \implies (ns \neq \emptyset \land c = max~ ns)
 \end{schema}
-
+The second line leaves d unconstrained. Initialising might set of a nuclear warhead, or something.
+\begin{schema}{LI5}
+  A; C5
+\where
+  c = 0 \implies ns = \emptyset\\
+  (c > 0 \land d = 0) \implies ns = \{c\}\\
+  d > 0 \implies (\{c,d\} \subseteq ns \land c = max~ ns \land d = max(ns \setminus \{c\}))
+\end{schema}
 
 \begin{schema}{C5MSF2}
   \Xi C5\\

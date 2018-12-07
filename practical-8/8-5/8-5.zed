@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  NAME == EXPR
+\end{zed}
+
+
+\begin{schema}{NAME}
+  DECLS
+\where
+  PREDS
+\end{schema}
+
+
+\end{document}
