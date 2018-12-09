@@ -1,18 +1,61 @@
 \documentclass{article}
 \usepackage{czt}
+\usepackage[margin=0.25in]{geometry}
 
 \begin{document}
 
 \begin{zed}
-  NAME == EXPR
+  [PERSON]\\
+  Committee == [member: \finset PERSON; chair: PERSON | chair \in member]\\
+  CommitteeInit == [Committee~'; founder?: PERSON | member' = \{founder?\}; chair' = founder?]\\
+  NewMember == [\Delta Committee; new?: PERSON | new? \notin member; member' = member \cup \{new?\}; chair' = chair]\\
+  RotateChair == [\Delta Committee | chair' \neq chair; member' = member]\\
+  CountOrdinary == [\Xi Committee; ans!: \nat | ans! = \#(member \setminus \{chair\})]
 \end{zed}
 
-
-\begin{schema}{NAME}
-  DECLS
+\begin{schema}{C}
+  co: iseq~ PERSON
 \where
-  PREDS
+  co \neq \langle  \rangle
 \end{schema}
+
+\begin{schema}{LI}
+  C; Committee
+\where
+  chair = co~ 1\\
+  member = ran~ co  
+\end{schema}
+
+\begin{schema}{CInit}
+  C~'\\
+  founder?: PERSON
+\where
+  co' = \langle founder? \rangle
+\end{schema}
+
+\begin{schema}{CNewMember}
+  \Delta C\\
+  new? : PERSON
+\where
+  new? \notin ran~ co\\
+  co' = co \cat \langle new? \rangle
+\end{schema}
+
+Wrap around. Tail is everything but element 1 (chair). We move element 1 to the back.
+\begin{schema}{CRotateChair}
+  \Delta C\\
+\where
+  co' = tail~ co \cat \langle  head~ co \rangle
+\end{schema}
+
+Alternately just count co -1..
+\begin{schema}{CCOuntOrdinary}
+  \Xi C\\
+  ans!: \nat
+\where
+  ans! = \#(ran~ (tail~ co))
+\end{schema}
+
 
 
 \end{document}

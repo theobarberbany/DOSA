@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{czt}
+\usepackage[margin=0.25in]{geometry}
+
+\begin{document}
+
+\begin{zed}
+  [PERSON]\\
+  Committee == [member: \finset PERSON; chair: PERSON | chair \in member]\\
+  CommitteeInit == [Committee~'; founder?: PERSON | member' = \{founder?\}; chair' = founder?]\\
+  NewMember == [\Delta Committee; new?: PERSON | new? \notin member; member' = member \cup \{new?\}; chair' = chair]\\
+  RotateChair == [\Delta Committee | chair' \neq chair; member' = member]\\
+  CountOrdinary == [\Xi Committee; ans!: \nat | ans! = \#(member \setminus \{chair\})]
+\end{zed}
+
+\begin{schema}{C}
+  normal: iseq~ PERSON\\
+  ch: PERSON
+\where
+  ch \notin ran~ normal
+\end{schema}
+
+\begin{schema}{LI}
+  C; Committee
+\where
+  chair = ch \land member = ran~ normal \cup  \{ch\}
+\end{schema}
+
+\begin{schema}{CInit}
+  C~'\\
+  founder?: PERSON
+\where
+  normal' = \langle \rangle \land ch' = founder?
+\end{schema}
+
+\begin{schema}{CNewMember}
+  \Delta C\\
+  new? : PERSON
+\where
+  new? \notin ran~ normal \cup \{ch\}\\
+  normal' = normal \cat \langle new? \rangle\\
+  ch' = ch
+\end{schema}
+
+Wrap around. We move chair to end of normal, and take the first element of normal and promote them to chair. 
+\begin{schema}{CRotateChair}
+  \Delta C\\
+\where
+  normal = tail~ normal \cat \langle  ch \rangle\\
+  ch' = head~ normal\\
+\end{schema}
+
+\begin{schema}{CCOuntOrdinary}
+  \Xi C\\
+  ans!: \nat
+\where
+  ans! = \# normal
+\end{schema}
+
+
+
+\end{document}
