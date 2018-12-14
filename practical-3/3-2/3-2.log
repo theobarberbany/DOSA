@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.28)  7 DEC 2018 18:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.28)  7 DEC 2018 18:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -158,15 +158,15 @@ Package czt Warning: Counting schema  on input line 20.
 Package czt Warning: Counting schema  on input line 28.
 
 
-Package czt Warning: Counting schema  on input line 36.
+Package czt Warning: Counting schema  on input line 38.
 
 
-Package czt Warning: Counting schema  on input line 43.
+Package czt Warning: Counting schema  on input line 46.
 
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./3-2.aux) ) 
+[2] (./3-2.aux) ) 
 Here is how much of TeX's memory you used:
  746 strings out of 492639
  7816 string characters out of 6129301
@@ -174,17 +174,17 @@ Here is how much of TeX's memory you used:
  4692 multiletter control sequences out of 15000+600000
  6541 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,11n,27p,184b,107s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb>
-Output written on 3-2.pdf (1 page, 48810 bytes).
+ 23i,11n,27p,184b,131s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on 3-2.pdf (2 pages, 49412 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
+ 21 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

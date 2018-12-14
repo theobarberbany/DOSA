@@ -29,14 +29,17 @@ This specification describes a committee structure
  Committee~';\\
  new?: PERSON
 \where
-  new? \notin member \land member' = member \cup \{new?\}
+  new? \notin member\\
+  member' = member \cup \{new?\}\\
+  chair' = chair
 \end{schema}
 
 \begin{schema}{RotateChair}
   Committee;\\
   Committee~'
 \where
-  chair' \neq chair \land member' = member
+  chair' \neq chair\\
+  member' = member
 \end{schema}
 
 \begin{schema}{CountOrdinary}
@@ -48,6 +51,31 @@ This specification describes a committee structure
   chair' = chair\\
   member' = member
 \end{schema}
+
+//3.4
+
+The resignee must be an ordinary member, thus in? \in member \setminus \{chair\}\\
+without this, the chair could sneakily resign, without being replaced.
+\begin{schema}{OrdinaryResign}
+  \Delta Committee\\
+  in?: PERSON
+\where
+  in? \in member \setminus \{chair\}\\
+  member' = member \setminus \{in?\}\\
+  chair' = chair
+\end{schema}
+
+// Could chose a new member at random, in stead of requiring replacement as input.
+// The chair is no longer in the committee. 
+\begin{schema}{ChairResign}
+  \Delta Committee\\
+  replacement?: PERSON
+\where
+  member' = member \setminus \{chair\}\\
+  replacement? \in member'\\
+  chair' = replacement?\\
+\end{schema}
+
 
 
 \end{document}
