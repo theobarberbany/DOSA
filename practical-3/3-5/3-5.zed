@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+[CELEBRITY]\\
+ANS ::= YES | NO\\
+LOC ::= HOME | AWAY
+\end{zed}
+
+\begin{schema}{TrackingSystem}
+  observed: \finset CELEBRITY\\
+  home: \finset CELEBRITY
+  \where
+  home \subseteq observed
+\end{schema}
+
+\begin{schema}{TrackingSystemInit}
+TrackingSystem~'
+\where
+observed' = \emptyset
+\end{schema}
+
+\begin{schema}{NewCeleb}
+  \Delta TrackingSystem\\
+  in?: CELEBRITY\\
+  where?: LOC 
+\where
+  where? = AWAY \implies home' = home\\
+  where? = HOME \implies home' = home \cup \{in?\}\\
+  observed' = observed \cup \{in?\}
+\end{schema}
+
+\begin{schema}{DeleteCeleb}
+  \Delta TrackingSystem\\
+  in?: CELEBRITY
+\where
+  observed' = observed \setminus \{in?\}\\
+  home' = home \setminus \{in?\}
+\end{schema}
+
+\begin{schema}{Query}
+  \Xi TrackingSystem\\
+  query?: CELEBRITY\\
+  ans!: ANS
+\where
+  query? \in observed \implies ans! = YES\\
+  query? \notin observed \implies ans! = NO\\
+  home' = home
+\end{schema}
+
+\begin{schema}{WhereMet}
+  \Xi TrackingSystem\\
+  query?: CELEBRITY\\
+  ans!: LOC
+\where
+  query? \in observed\\
+  ans! = HOME \iff query? \in home
+\end{schema}
+
+
+
+
+
+
+\end{document}
