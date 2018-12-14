@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+[CELEBRITY]\\
+ANS ::= YES | NO
+\end{zed}
+
+\begin{schema}{TrackingSystem}
+  observed: \finset CELEBRITY
+\end{schema}
+
+\begin{schema}{TrackingSystemInit}
+TrackingSystem~'
+\where
+observed' = \emptyset
+\end{schema}
+
+\begin{schema}{NewCeleb}
+  \Delta TrackingSystem\\
+  in?: CELEBRITY
+\where
+  observed' = observed \cup \{in?\}
+\end{schema}
+
+\begin{schema}{DeleteCeleb}
+  \Delta TrackingSystem\\
+  in?: CELEBRITY
+\where
+  observed' = observed \setminus \{in?\}
+\end{schema}
+
+\begin{schema}{Query}
+  \Xi TrackingSystem\\
+  query?: CELEBRITY\\
+  ans!: ANS
+\where
+  query? \in observed \implies ans! = YES\\
+  query? \notin observed \implies ans! = NO
+\end{schema}
+
+
+
+
+
+
+\end{document}
