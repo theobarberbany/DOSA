@@ -2,11 +2,63 @@
 \usepackage{czt}
 
 \begin{document}
-\begin{zsection}
-  \SECTION 56 \parents standard\_toolkit
-\end{zsection}
+Let's attempt stable marriage.
+\begin{zed}
+  [ MAN, WOMAN ]\\
+  Reflexive[T] == \{r: T \rel T | \id T \subseteq r \}\\
+  Transitive[T] == \{r: T \rel T | r \comp r \subseteq r \}\\
+  Preorder[T] == Reflexive[T] \cap Transitive[T]\\
+  Antisymmetric[T] == \{r: T \rel T | r \cap r\inv \subseteq \id T \}\\
+  PartialOrder[T] == Preorder[T] \cap Antisymmetric[T]\\
+  TotalOrder[T] == \{ r: PartialOrder[T] | r \cup r\inv = T \cross T \}
+  
+\end{zed}
 
-This specification describes ...
+\begin{schema}{StableMarriage}
+  male\_pref: MAN \pfun TotalOrder[WOMAN]\\
+  female\_pref: WOMAN \pfun TotalOrder[MAN]
+\where
+  MAN \in \finset MAN\\
+  WOMAN \in \finset WOMAN\\
+  \#MAN = \#WOMAN
+\end{schema}
+
+Initially, no preferences are expressed
+\begin{schema}{StableMarriageInit}
+  StableMarriage~'
+\where
+  male\_pref' = \emptyset\\
+  female\_pref' = \emptyset
+\end{schema}
+
+\begin{schema}{EnterWomanPref}
+  \Delta StableMarriage\\
+  name?: WOMAN\\
+  inpref?: TotalOrder[MAN]
+\where
+  name? \notin dom~ female\_pref\\
+  female\_pref' = female\_pref \cup \{name? \mapsto inpref?\}\\
+  male\_pref' = male\_pref
+\end{schema}
+
+\begin{schema}{EnterManPref}
+  \Delta StableMarriage\\
+  name?: MAN\\
+  inpref?: TotalOrder[WOMAN]
+\where
+  name? \notin dom~ male\_pref\\
+  male\_pref' = male\_pref \cup \{name? \mapsto inpref?\}\\
+  female\_pref' = female\_pref
+\end{schema}
+
+\begin{schema}{Marry}
+  \Xi StableMarriage\\
+  wife!: MAN \bij WOMAN
+\where
+  \dom male\_pref = MAN\\
+  \dom female\_pref = WOMAN\\
+  \forall m,n: MAN| m \neq n @ (wife! m \mapsto wife! n \in male\_pref~ m \lor n \mapsto m \in female\_pref~(wife! n))
+\end{schema}
 
 
 
