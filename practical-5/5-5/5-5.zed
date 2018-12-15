@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+[RUNNER]
+\end{zed}
+
+\begin{schema}{WinningPost}
+  top\_3: iseq~ RUNNER
+\end{schema}
+
+\begin{schema}{WinningPostInit}
+  WinningPost~'
+\where
+  top\_3' = \langle  \rangle
+\end{schema}
+
+The injective sequence ensures no runner can take first and second, or second and third place. (All are unique)
+\begin{schema}{Observe}
+  \Delta WinningPost\\
+  in?: RUNNER
+\where
+  \#top\_3 < 3 \implies top\_3' = top\_3 \cat \langle in? \rangle\\
+  \#top\_3 = 3 \implies top\_3' = top\_3
+  
+\end{schema}
+
+\begin{schema}{Display}
+  \Xi WinningPost\\
+  out!: iseq~ RUNNER
+\where
+  out! = top\_3
+\end{schema}
+
+
+\end{document}
