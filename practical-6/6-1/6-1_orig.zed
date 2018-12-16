@@ -1,22 +1,24 @@
 \documentclass{article}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=0.25in]{geometry}
 \usepackage{czt}
 
 \begin{document}
+The Definition of CHARS is interesting. It defines a 'token'\\
+EOF and then all applications of the function Other to the type ORDINARY.\\
+This is, by specification of the Z notation an injective function.
 \begin{zed}
-  [CHAR]\\
+  [ORDINARY]\\
+  CHARS ::= EOF | Other\ldata ORDINARY\rdata\\
   STATE ::= READ | WRITE
 \end{zed}
-\begin{axdef}
-  EOF: CHAR
-\end{axdef}
-\begin{zed}
-STRING == seq~ (CHAR \setminus \{EOF\})
-\end{zed}
+
 \begin{schema}{File}
-  content: STRING \\
+  content: \seq CHARS\\
   state: STATE\\
   position: \nat
+\where
+  last~ content = EOF\\
+  \# ( content \filter \{EOF\}) = 1
 \end{schema}
 
 \begin{schema}{FileInit}
@@ -28,7 +30,7 @@ STRING == seq~ (CHAR \setminus \{EOF\})
 
 \begin{schema}{Overwrite}
   \Delta File\\
-  in?: STRING
+  in?: \seq CHARS
 \where
   state = WRITE\\
   content' = in?\\
@@ -37,10 +39,10 @@ STRING == seq~ (CHAR \setminus \{EOF\})
 
 \begin{schema}{Append}
   \Delta File\\
-  in?: CHAR \setminus \{EOF\}
+  in?: ORDINARY
 \where
   state = WRITE\\
-  content' = content \cat \langle in? \rangle\\
+  content' = content \cat \langle Other(in?) \rangle\\
   state' = state
 \end{schema}
 
@@ -50,26 +52,28 @@ If a user tries to reopen an open file it will not reset the read position.
   \where
   state = WRITE \implies state' = READ \land position' = 0\\
   state = READ \implies state' = state \land position' = position\\
-  content' = content
+  content' = content\\
 \end{schema}
 
 \begin{schema}{Close}
   \Delta File
   \where
-  state = READ\\
   state' = WRITE\\
   content' = content  
 \end{schema}
 
+I think this should work, however if there is an EOF (somehow) in\\
+the middle of the file it will not read beyond there. Using the domain of\\
+the sequence (1,2,3...n) to do this is more elegant.
 \begin{schema}{ReadChar}
   \Delta File\\
-  out!: CHAR
+  out!: CHARS
   \where
   state = READ\\
   content' = content\\
   state' = state\\
-  position \in dom~ content \implies out! = content~ position \land position' = position + 1\\
-  position \notin dom~content \implies out! = EOF \land position' \notin dom~content 
+  \IF content~ position = EOF \THEN out! = EOF \land position' = position \\
+  \t2 \ELSE~ out! = content~ position \land position' = position + 1 
 \end{schema}
 
 
