@@ -28,7 +28,7 @@ The injective sequence ensures no runner can take first and second, or second an
 
 \begin{schema}{Display}
   \Xi WinningPost\\
-  out!: iseq~ RUNNER
+  out!: seq_1~ RUNNER
 \where
   out! = top\_3
 \end{schema}
