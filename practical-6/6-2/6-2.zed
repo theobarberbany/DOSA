@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+  [CHAR]\\
+  STATE ::= READ | WRITE\\
+  RESPONSE ::= OK | FILE\_WRONG\_MODE
+\end{zed}
+\begin{axdef}
+  EOF: CHAR
+\end{axdef}
+\begin{zed}
+STRING == seq~ (CHAR \setminus \{EOF\})
+
+\end{zed}
+\begin{schema}{File}
+  content: STRING \\
+  state: STATE\\
+  position: \nat
+\end{schema}
+
+\begin{zed}
+WriteFail == [\Xi File; resp!: RESPONSE \setminus \{OK\}| state = READ \implies resp! = FILE\_WRONG\_MODE]\\
+ReadFail == [\Xi File; resp!: RESPONSE \setminus \{OK\} | state = WRITE \implies resp! = FILE\_WRONG\_MODE]
+\end{zed}
+
+\begin{schema}{FileInit}
+  File~'
+\where
+  content' = \langle \rangle\\
+  state' = WRITE
+\end{schema}
+
+\begin{schema}{Overwrite}
+  \Delta File\\
+  in?: STRING
+\where
+  state = WRITE\\
+  content' = in?\\
+  state' = state
+\end{schema}
+
+Note \"[Overwrite; resp!: \{OK\}]" could be replaced with a more general \\
+'OK' Schema, and ANDED with the rest of the Total schema. However I think the\\
+way below potentially illustrates what's going on better.
+
+\begin{zed}
+OverwriteTotal == [Overwrite; resp!: \{OK\}] \lor WriteFail
+\end{zed}
+
+
+\begin{schema}{Append}
+  \Delta File\\
+  in?: CHAR \setminus \{EOF\}
+\where
+  state = WRITE\\
+  content' = content \cat \langle in? \rangle\\
+  state' = state
+\end{schema}
+
+\begin{zed}
+AppendTotal == [Append; resp!: \{OK\}] \lor WriteFail
+\end{zed}
+
+If a user tries to reopen an open file it will not reset the read position.
+\begin{schema}{Open}
+  \Delta File
+  \where
+  state = WRITE \implies state' = READ \land position' = 0\\
+  state = READ \implies state' = state \land position' = position\\
+  content' = content
+\end{schema}
+
+\begin{zed}
+OpenTotal == [Open; resp!: \{OK\}] \lor WriteFail
+\end{zed}
+
+\begin{schema}{ReadChar}
+  \Delta File\\
+  out!: CHAR
+  \where
+  state = READ\\
+  content' = content\\
+  state' = state\\
+  position \in dom~ content \implies out! = content~ position \land position' = position + 1\\
+  position \notin dom~content \implies out! = EOF \land position' \notin dom~content 
+\end{schema}
+
+\begin{zed}
+ReadCharTotal == [ReadChar; resp!: \{OK\}] \lor ReadFail
+\end{zed}
+
+\begin{schema}{Close}
+  \Delta File
+  \where
+  state = READ\\
+  state' = WRITE\\
+  content' = content  
+\end{schema}
+
+\begin{zed}
+CloseTotal == [Close; resp!: \{OK\}] \lor ReadFail
+\end{zed}
+
+\end{document}
