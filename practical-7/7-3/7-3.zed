@@ -12,26 +12,76 @@ Trace == seq~EVENT
 \end{zed}
 
 \begin{schema}{SystemSkeleton}
-  log: Trace
+  tr: Trace
 \end{schema}
 
-\begin{schema}{OutBeforeIn}
+We define a set of subtraces representing the output of a bit 3 times\\
+and the input of that bit. For our entire trace there can only be an out\\
+bit if there exists a subtrace where there the previous input is either an IN, or an IN OUT,\\
+or IN OUT OUT.  Here the exists s works to allow us to look at the last 1,2,3 entries of the trace.
+\begin{schema}{ThreeOutBeforeIn}
   tr: Trace
 \where
-  \forall t: Trace | tr = t \cat \langle OUT, OUT, OUT \rangle @ t \neq \langle  \rangle \land last~ t = IN
+  \forall t: Trace; b: BIT | tr = t \cat \langle OUT~ b \rangle @\\
+  \t1 \exists s: Trace @\\
+  \t2 t = s \cat \langle IN~ b \rangle \lor\\
+  \t3 t = s \cat  \langle IN~b, OUT~b \rangle \lor\\
+  \t3 t = s \cat \langle IN~b, OUT~b, OUT~b \rangle
 \end{schema}
+
+\begin{schema}{OneInAfterThreeOut}
+  tr: Trace
+\where
+  \forall t: Trace; b: BIT | tr = t \cat \langle IN~b \rangle @\\
+  \t1 t = \langle  \rangle \lor ( \exists s: Trace; c: BIT @\\
+  \t2 t = s \cat \langle OUT~c, OUT~c, OUT~c \rangle)
+  \end{schema}
+
+
+The bit b can only be outputted if it was inputted 2 or 3 times prior(ly?)
+\begin{schema}{ThreeInMajorityOut}
+  tr: Trace
+\where
+  \forall t: Trace; b: BIT | tr = t \cat \langle OUT~ b \rangle @\\
+  \t1 \exists s: Trace; c: BIT @\\
+  \t2 t = s \cat \langle IN~b, IN~b, IN~c \rangle \lor\\
+  \t3 t = s \cat \langle IN~b, IN~c, IN~b \rangle \lor \\
+  \t3 t = s \cat \langle IN~c, IN~b, IN~b \rangle
+\end{schema}
+
+\begin{schema}{ThreeInAfterOneOut}
+  tr: Trace
+\where
+  \forall t : Trace; b: BIT | tr = t \cat \langle IN~ b \rangle @\\
+  \t1 t = \langle  \rangle \lor\\
+  \t2 \exists s: Trace; c,d,e: BIT @\\
+  \t3 t = s \cat \langle OUT~c \rangle \lor \\
+  \t3 t = s \cat \langle OUT~c, IN~d \rangle \lor \\
+  \t3 t = s \cat \langle OUT~c, IN~d, IN~ e \rangle
+\end{schema}
+
 
 \begin{zed}
-System == SystemSkeleton \land OutBeforeIn
+ThreeOutOneIn == SystemSkeleton \land ThreeOutBeforeIn \land OneInAfterThreeOut\\
+ThreeInOneMOut == SystemSkeleton \land ThreeInMajorityOut \land ThreeInAfterOneOut
 \end{zed}
 
-\begin{schema}{SystemInit}
-  System~'
+
+I had to peek for this. It's surprisingly elegant. \\
+It states the count of all of the output bits (OUT 0, OUT1) should\\
+at any given time be less than or equal to the input bits. (IN 0, IN 1)\\ 
+Because ran OUT is the set \{OUT 0, OUT 1\}, there is not a restriction \\
+stating that the output bit has to match the input bit.\\
+This also allows for buffering.
+
+\begin{schema}{Corruptor}
+  tr: Trace
 \where
-  log' = \emptyset
+  \#(tr \filter ran~ OUT) \leq \#(tr \filter ran~ IN)
 \end{schema}
 
-
+In a system where no bits are corrupted, the number of INs matches the number of OUTs.
+To allow arbitrary corrupting, these two numbers must not match.
 
 
 \end{document}
