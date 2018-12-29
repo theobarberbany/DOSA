@@ -3,7 +3,7 @@
 
 \begin{document}
 \begin{zed}
-  [ STUDENT, MODULE]
+  [ STUDENT, MODULE ]
 \end{zed}
 
 \begin{schema}{Enrolled}

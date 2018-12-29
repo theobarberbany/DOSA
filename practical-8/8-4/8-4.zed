@@ -3,6 +3,13 @@
 
 \begin{document}
 
+To Caveat this, most of it is wrong. But as CZT does not have bag syntax, I'm leaving as is to learn from.\\
+
+For 8.4, the abstract specification *must* have at least the information in a bag, as we need to count the number\\
+of occurrences of each input value.\\\\
+
+I think the idea behind the concrete spec should still work. The linking invariant works, if substituting sets for bags.
+
 \begin{zed}
   A == [ns: \finset \nat_1]\\
   AInit == [A~' | ns' = \emptyset]\\

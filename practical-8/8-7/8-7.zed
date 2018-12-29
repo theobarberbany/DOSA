@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{czt}
+\usepackage{stmaryrd}
+
+
+\begin{document}
+\begin{zed}
+  ANS ::= Yes | No\\
+  COIN == \{1,2,5,10,20,50\}
+\end{zed}
+
+I'm cheating and making a 'bag' really just a sequence. \\
+Lets hope I can get away with it. Below the concatenation operator intended to mean bag union
+\begin{axdef} 
+  sum : bag~ COIN \fun \nat 
+\where 
+  \forall p: COIN @ sum \langle p \rangle = p\\
+  \forall b,c: bag~ COIN @ sum(b\cat c) = sum~ b + sum~ c
+\end{axdef} 
+
+\begin{zed}
+Purse == [coin: bag~ COIN]\\
+PurseInit == [Purse~' | coin' = \langle  \rangle]\\
+Affordable == [\Xi Purse; cost?: \nat_1; ans!:ANS | ans! = Yes \implies sum~ coin \geq cost?]\\
+SpendExactAmount == [\Delta Purse; cost?: \nat_1 | (\exists b: bag~ COIN | b \subseteq cost? \land 
+\end{zed}
+
+
+
+\end{document}

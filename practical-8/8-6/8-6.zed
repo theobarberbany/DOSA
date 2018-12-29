@@ -44,10 +44,10 @@
 
 Wrap around. We move chair to end of normal, and take the first element of normal and promote them to chair. 
 \begin{schema}{CRotateChair}
-  \Delta C\\
+  \Delta C
 \where
   normal = tail~ normal \cat \langle  ch \rangle\\
-  ch' = head~ normal\\
+  ch' = head~ normal
 \end{schema}
 
 \begin{schema}{CCOuntOrdinary}

@@ -10,7 +10,7 @@
 \begin{axdef}
   prereq: MODULE \rel MODULE
 \where
-  prereq\plus \cap \id MODULE = \emptyset
+  prereq \plus \cap \id MODULE = \emptyset
 \end{axdef}
 
 

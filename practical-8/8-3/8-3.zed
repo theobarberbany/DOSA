@@ -22,7 +22,7 @@
 Store the two max seen so far as they are observed.
 Must be $c=0 \land d=0$ to ensure two MSF are unique.
 \begin{zed}{}
-  C5 == [c,d: \nat| (c=0\land d=0) \lor  c < d]\\
+  C5 == [c,d: \nat| (c=0\land d=0) \lor  c > d]\\
   C5Init == [C5~' | c' = 0 \land d' = 0]\\
   C5MSF == [\Xi C5; m!: \nat | m! = c]
 \end{zed}
