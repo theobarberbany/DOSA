@@ -1,11 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.16)  20 NOV 2018 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.28)  29 DEC 2018 13:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **8-1.zed
 (./8-1.zed
-LaTeX2e <2018-04-01> patch level 2
-Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+LaTeX2e <2018-04-01> patch level 5
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/size10.clo
@@ -165,20 +164,23 @@ Package czt Warning: Counting schema  on input line 14.
 Package czt Warning: Counting schema  on input line 24.
 
 
-Package czt Warning: Counting unboxed  on input line 29.
+Package czt Warning: Counting schema  on input line 30.
 
 
-Package czt Warning: Counting schema  on input line 37.
+Package czt Warning: Counting unboxed  on input line 36.
+
+
+Package czt Warning: Counting schema  on input line 45.
 
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./8-1.aux) ) 
 Here is how much of TeX's memory you used:
- 752 strings out of 492649
- 7875 string characters out of 6129621
- 68192 words of memory out of 5000000
- 4689 multiletter control sequences out of 15000+600000
+ 752 strings out of 492639
+ 7875 string characters out of 6129301
+ 69489 words of memory out of 5000000
+ 4695 multiletter control sequences out of 15000+600000
  7468 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  23i,11n,27p,184b,138s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -191,7 +193,7 @@ pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/stmaryrd/stmary10
 .pfb>
-Output written on 8-1.pdf (1 page, 67587 bytes).
+Output written on 8-1.pdf (1 page, 68614 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

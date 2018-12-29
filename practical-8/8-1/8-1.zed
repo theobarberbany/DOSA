@@ -26,6 +26,13 @@ Injective seq ensures the 2 msf are unique.
   (\varg<\varg)\comp cs \subseteq cs \comp (\varg<\varg)
 \end{schema}
 
+\begin{schema}{C3Init}
+  C3~'
+\where
+  cs' = \langle  \rangle
+\end{schema}
+
+
 \begin{zed}
   LI3 == [A; C3 | ns = ran~ cs]
 \end{zed}
