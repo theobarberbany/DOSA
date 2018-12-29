@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+  A == [ns: \finset \nat_1]\\
+  AInit == [A~' | ns' = \emptyset]\\
+  New == [\Delta A; n?: \nat_1 | ns' = ns \cup \{n?\}]\\
+  MSF == [\Xi A; m!: \nat_1 | ns \neq \emptyset; m! = max~ ns]
+\end{zed}
+
+\begin{schema}{AM2SF}
+  \Xi A\\
+  m1!,m2!: \nat_1
+\where
+  \#ns > 1\\
+  m1! = max~ ns\\
+  m2! = max~ (ns \setminus \{m1!\})
+\end{schema}
+
+Injective seq ensures the 2 msf are unique.
+
+\begin{schema}{C3}
+  cs: \iseq \nat_1 
+\where
+  (\varg<\varg)\comp cs \subseteq cs \comp (\varg<\varg)
+\end{schema}
+
+\begin{schema}{C3Init}
+  C3~'
+\where
+  cs' = \langle  \rangle
+\end{schema}
+
+\begin{zed}
+  LI3 == [A; C3 | ns = ran~ cs]
+\end{zed}
+
+
+Note $cs~ \setminus \langle ma! \rangle$ is not equivalent,\\
+because a sequence is a function, and the domain mapping of $\langle ma! \rangle$ is different to cs\\
+(You did it wrong this way before)
+\begin{schema}{C3MSF2}
+  \Xi C3; ma!, mb!: \nat_1
+\where
+  \#(ran~ cs) \geq 2\\
+  ma! = last~ cs\\
+  mb! = cs~ (\#cs -1)
+\end{schema}
+
+Prove that C3 refines the Abstract specification of the widget nodule machine:\\
+
+\begin{zed}
+\forall C3' @ C3Init \implies \exists A' @ LI' \land AInit\\\\
+
+\t8 [De-sugar]\\\\
+
+\forall cs': \iseq \nat_1 | (\varg<\varg)\comp cs' \subseteq cs' \comp (\varg<\varg) @ cs' = \langle  \rangle \implies\\
+\t1 \exists ns': \finset \nat_1 @ ns' = ran~ cs' \land ns' = \emptyset\\\\
+
+\t8 [One~point~rule:~ ns']\\\\
+
+\forall cs': \iseq \nat_1 | (\varg<\varg)\comp cs' \subseteq cs' \comp (\varg<\varg) @ cs' = \langle  \rangle \implies\\
+\t1 \emptyset = ran~ cs'\\\\
+
+\t8 [One~point~rule:~cs']\\\\
+\emptyset = ran~ \langle \rangle\\\\
+\t8 [Definition~ ran]\\\\
+True
+\end{zed}
+
+\end{document}
